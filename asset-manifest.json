@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/ToDoReact/static/js/main.591f5c07.js",
-    "index.html": "/ToDoReact/index.html",
-    "main.591f5c07.js.map": "/ToDoReact/static/js/main.591f5c07.js.map"
+    "main.js": "/CoinTrackerClone/static/js/main.24290b76.js",
+    "index.html": "/CoinTrackerClone/index.html",
+    "main.24290b76.js.map": "/CoinTrackerClone/static/js/main.24290b76.js.map"
   },
   "entrypoints": [
-    "static/js/main.591f5c07.js"
+    "static/js/main.24290b76.js"
   ]
 }
