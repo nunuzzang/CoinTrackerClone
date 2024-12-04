@@ -1,13 +1,13 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Coins from "./routes/Coins"
 import Coin from "./routes/Coin"
-import { IisDark } from "./interface";
 
-function Router({ isDark }: IisDark) {
+
+function Router() {
     return <BrowserRouter basename="/CoinTrackerClone">
         <Switch>
             <Route path="/:coinId">
-                <Coin isDark={isDark} />
+                <Coin />
             </Route>
             <Route exact path="/">
                 <Coins />

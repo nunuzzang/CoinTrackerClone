@@ -2,8 +2,11 @@ import { useQuery } from "react-query";
 import { fetchCoinHistroy } from "../api";
 import ApexCharts from "react-apexcharts";
 import { ChartProps, IHistorical } from "../interface";
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "../atoms";
 
-function Chart({ coinId, isDark }: ChartProps) {
+function Chart({ coinId }: ChartProps) {
+    const isDark = useRecoilValue(isDarkAtom);
     const { isLoading, data } = useQuery<IHistorical[]>(["ohlcv", coinId], () => fetchCoinHistroy(coinId), {
         refetchInterval: 10000,
     })
@@ -12,6 +15,59 @@ function Chart({ coinId, isDark }: ChartProps) {
         <div>{
             isLoading ?
                 "Loading chart..." :
+                /*  <ApexCharts
+                     type="line"
+                     series={[
+                         {
+                             name: "Price",
+                             data: data?.map((price) => parseFloat(price.close)) ?? [],
+                             // data가 null이나 undefined가 아닐 경우, data의 각 요소에 대해 price.close를 parseFloat로 변환한 배열을 생성
+                         },
+                     ]}
+                     options={{
+                         theme: {
+                             mode: "dark",
+                         },
+                         chart: {
+                             height: 300,
+                             width: 500,
+                             toolbar: {
+                                 show: false,
+                             },
+                             background: "transparent"
+                         },
+                         grid: {
+                             show: false,
+                         },
+                         stroke: {
+                             curve: "smooth",
+                             width: 4,
+                         },
+                         yaxis: {
+                             show: false,
+                         },
+                         xaxis: {
+                             labels: { show: false, },
+                             axisTicks: { show: false },
+                             axisBorder: { show: false },
+                             type: "datetime",
+                             categories: data?.map((price) => new Date(price.time_close * 1000).toISOString())
+                             //메소드는 JavaScript에서 Date 객체의 메소드로, 날짜와 시간을 ISO 8601 형식의 문자열로 변환하여 반환
+                         },
+                         fill: {
+                             type: "gradient",
+                             gradient: {
+                                 gradientToColors: ["#0be881"], stops: [0, 100]
+                             },
+                         },
+                         colors: ["#0fbcf9"],
+                         tooltip: {
+                             y: {
+                                 formatter: (value) => `$${value.toFixed(3)}`,
+                             }
+                         }
+                     }}
+                 /> */
                 <ApexCharts
                     type="candlestick"
                     series={[

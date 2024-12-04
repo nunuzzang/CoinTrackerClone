@@ -5,7 +5,7 @@ import Price from "./price";
 import { useQuery } from "react-query";
 import { fetchCoinInfo, fetchCoinTickers } from "../api";
 import { Helmet } from "react-helmet";
-import { RouteParams, RouteState, InfoData, PriceData, IisDark } from "../interface";
+import { RouteParams, RouteState, InfoData, PriceData } from "../interface";
 import { CoinContainer, CoinHeader, CoinLoader, CoinTitle, Description, HomeIcon, Overview, OverviewItem, Tab, Tabs } from "../component";
 
 
@@ -13,7 +13,7 @@ import { CoinContainer, CoinHeader, CoinLoader, CoinTitle, Description, HomeIcon
 
 
 
-function Coin({ isDark }: IisDark) {
+function Coin() {
     const { coinId } = useParams<RouteParams>();
     const { state } = useLocation<RouteState>();
     const priceMatch = useRouteMatch("/:coinId/price");
@@ -92,7 +92,7 @@ function Coin({ isDark }: IisDark) {
                                 percent_from_price_ath={tickersData?.quotes.USD.percent_from_price_ath} />
                         </Route>
                         <Route path={`/:coinId/chart`}>
-                            <Chart coinId={coinId} isDark={isDark} />
+                            <Chart coinId={coinId} />
                         </Route>
                     </Switch>
                 </>

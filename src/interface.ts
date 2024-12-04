@@ -9,9 +9,6 @@ export interface ICoin {
     type: string,
 }
 // Coin.tsx
-export interface IisDark {
-    isDark: boolean;
-}
 export interface RouteParams {
     coinId: string;
 }
@@ -87,7 +84,6 @@ export interface IHistorical {
 
 export interface ChartProps {
     coinId: string;
-    isDark: boolean;
 }
 
 // price.tsx

@@ -1,16 +1,17 @@
 import { ThemeProvider } from "styled-components";
 import { Helmet } from "react-helmet";
 import Router from "./Router";
-import { useState } from "react";
+import { ReactQueryDevtools } from "react-query/devtools"
 import { darkTheme, lightTheme } from "./theme";
 import { ButtonStyle, GlobalStyle, StyledBsFillMoonFill, StyledBsFillSunFill } from "./component";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { isDarkAtom } from "./atoms";
 
 
 function App() {
-	const [isDark, setIsDark] = useState(false);
-	const toggleDark = () => {
-		setIsDark((current) => !(current));
-	}
+	const isDark = useRecoilValue(isDarkAtom);
+	const setDarkAtom = useSetRecoilState(isDarkAtom);
+	const toggleDarkAtom = () => setDarkAtom((prev) => !prev);
 	return (
 		<>
 			<Helmet>
@@ -19,11 +20,12 @@ function App() {
 			<ThemeProvider theme={isDark ? darkTheme : lightTheme}>
 				<GlobalStyle />
 				<ButtonStyle>
-					<p onClick={() => toggleDark()}>
+					<p onClick={() => toggleDarkAtom()}>
 						{isDark ? <StyledBsFillSunFill color="white" /> : <StyledBsFillMoonFill color="black" />}
 					</p>
 				</ButtonStyle>
-				<Router isDark={isDark} />
+				<Router />
+				{/* <ReactQueryDevtools initialIsOpen={true} /> */}
 			</ThemeProvider >
 		</>
 
